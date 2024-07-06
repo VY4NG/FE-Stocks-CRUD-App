@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks CRUD App</title>
+
+    <!-- Link to Bootstrap. -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
+
+    <!-- Link to CSS file, styles.css. -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="container">
+    <br>
+
+    <!-- CREATE -->
+    <form>
+        <h1>Add Stock</h1>
+        <!-- Card class will have the Bootstrop forms where users can enter information. -->
+        <div class="card">
+            <div class="row">
+                <div class="col-sm">
+                    <!-- Bootstrap styled form to enter company name. -->
+                    <div class="form-group">
+                        <label for="new-company">Company Name</label>
+                        <input type="text" class="form-control" id="new-company" placeholder="Company Name">
+                    </div>
+                    <!-- Bootstrap styled form to enter company ticker symbol. -->
+                    <div class="form-group">
+                        <label for="new-ticker">Ticker Symbol</label>
+                        <input type="text" class="form-control" id="new-ticker" placeholder="Ticker Symbol">
+                    </div>
+                    <!-- Bootstrap styled form to enter company price at buy. -->
+                    <!-- Price will be in USD, using step="0.01" and min="0". -->
+                    <div class="form-group">
+                        <label for="new-price-buy">Price (USD) at Buy</label>
+                        <input type="number" class="form-control" id="new-price-buy" step="0.01" min="0" placeholder="0.00">
+                    </div>
+                    <!-- Bootstrp styled form to enter amount of shares at buy. -->
+                    <div class="form-group">
+                        <label for="shares-buy">Shares at Buy</label>
+                        <input type="number" class="form-control" id="shares-buy" placeholder="0">
+                    </div>
+                    <!-- Bootstrap styled form to enter cost basis. -->
+                    <div class="form-group">
+                        <label for="cost-basis">Cost Basis (USD)</label>
+                        <input type="number" class="form-control" id="cost-basis" step="0.01" min="0" placeholder="Price (USD) @ Buy × Shares">
+                    </div>
+                    <!-- Bootstrap styled form to enter date added. -->
+                    <div class="form-group">
+                        <label for="date-added">Date Added</label>
+                        <input type="date" class="form-control" id="date-added">
+                    </div>
+                    <!-- Bootstrap styled form to enter company price at sell. -->
+                    <div class="form-group">
+                        <label for="new-price-sell">Price (USD) at Sell</label>
+                        <input type="number" class="form-control" id="new-price-sell" step="0.01" placeholder="0.00">
+                    </div>
+                    <!-- Bootstrap styled form to enter amount of shares at sell. -->
+                    <div class="form-group">
+                        <label for="shares-sell">Shares at Sell</label>
+                        <input type="number" class="form-control" id="shares-sell" placeholder="0">
+                    </div>
+                    <!-- Bootstrap styled form to enter company current price. -->
+                    <div class="form-group">
+                        <label for="new-price-current">Current Price (USD)</label>
+                        <input type="number" class="form-control" id="new-price-current" step="0.01" placeholder="0.00">
+                    </div>
+                    <!-- Bootstrap styled form to enter unrealized profit/loss. -->
+                    <div class="form-group">
+                        <label for="unrealized-profit-loss">Unrealized Profit/Loss</label>
+                        <input type="number" class="form-control" id="unrealized-profit-loss" step="0.01" placeholder="(Current Price (USD) × Shares) - Cost Basis">
+                    </div>
+                    <!-- Bootstrap styled form to enter realized profit/loss. -->
+                    <div class="form-group">
+                        <label for="realized-profit-loss">Realized Profit/Loss</label>
+                        <input type="number" class="form-control" id="realized-profit-loss" step="0.01" placeholder="(Price (USD) @ Sell × Shares) - Cost Basis">
+                    </div>
+                    <br>
+                    <!-- Bootstrap styled button so users can add the information entered into the table. -->
+                    <div>
+                        <button id="add" class="btn btn-success form-control">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>
+
+    <!-- UPDATE -->
+    <form>
+        <!-- Almost the same as Add, except one addition which is Stock ID and the button is changed to Update. -->
+        <h1>Update Stock</h1>
+        <div class="card">
+            <div class="row">
+                <div class="col-sm">
+                    <!-- Bootstrap styled form to enter Stock ID. -->
+                    <div class="form-group">
+                        <label for="stockId">Stock ID</label>
+                        <input id="stockId">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-company">Company Name</label>
+                        <input type="text" class="form-control" id="update-company" placeholder="Company Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-ticker">Ticker Symbol</label>
+                        <input type="text" class="form-control" id="update-ticker" placeholder="Ticker Symbol">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-price-buy">Price (USD) at Buy</label>
+                        <input type="number" class="form-control" id="update-price-buy" step="0.01" min="0" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-shares-buy">Shares at Buy</label>
+                        <input type="number" class="form-control" id="update-shares-buy" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-cost-basis">Cost Basis (USD)</label>
+                        <input type="number" class="form-control" id="update-cost-basis" step="0.01" min="0" placeholder="Price (USD) @ Buy × Shares">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-date-added">Date Added</label>
+                        <input type="date" class="form-control" id="update-date-added">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-price-sell">Price (USD) at Sell</label>
+                        <input type="number" class="form-control" id="update-price-sell" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-shares-sell">Shares at Sell</label>
+                        <input type="number" class="form-control" id="update-shares-sell" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-price-current">Current Price (USD)</label>
+                        <input type="number" class="form-control" id="update-price-current" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-unrealized-profit-loss">Unrealized Profit/Loss</label>
+                        <input type="number" class="form-control" id="update-unrealized-profit-loss" step="0.01" placeholder="(Current Price (USD) × Shares) - Cost Basis">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-realized-profit-loss">Realized Profit/Loss</label>
+                        <input type="number" class="form-control" id="update-realized-profit-loss" step="0.01" placeholder="(Price (USD) @ Sell × Shares) - Cost Basis">
+                    </div>
+                    <br>
+                    <!-- Bootstrap styled button so users can update the information entered into the table. -->
+                    <div>
+                        <button id="update" class="btn btn-success form-control">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>
+
+    <!-- READ -->
+    <!-- Bootstrop styled table -->
+    <table id="list" class="table table-success table-striped">
+        <thead>
+            <th>Stock ID</th>
+            <th>Company Name</th>
+            <th>Ticker Symbol</th>
+            <th>Price (USD) @ Buy</th>
+            <th>Shares @ Buy</th>
+            <th>Cost Basis (USD)</th>
+            <th>Dated Added</th>
+            <th>Price (USD) @ Sell</th>
+            <th>Shares @ Sell</th>
+            <th>Current Price (USD)</th>
+            <th>Unrealized Profit/Loss</th>
+            <th>Realized Profit/Loss</th>
+
+            <!-- DELETE -->
+            <th>Remove From List</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="stocksCRUD.js"></script>
+</body>
+</html>

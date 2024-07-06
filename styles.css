@@ -1,0 +1,8 @@
+h1 {
+    color: green
+}
+
+/* Bold each label on the form. */
+label {
+    font-weight: bold;
+}
