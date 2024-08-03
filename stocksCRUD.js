@@ -15,13 +15,13 @@ Recommended API:
 */
 
 // Define API endpoint to interact with MockAPI.
-const urlEndpointStock = "https://66858386b3f57b06dd4d0089.mockapi.io/Stocks/CRUD/App/API/Stock";
+const urlEndpointStocks = "https://66858386b3f57b06dd4d0089.mockapi.io/crud/app/tests/api/stocks";
 
 // READ - Fetch the stocks, get entities from the API.
 // Function to fetch all stocks from MockAPI.
 function fetchStocks() {
     $.ajax({
-        url: urlEndpointStock,
+        url: urlEndpointStocks,
         method: 'GET',
         success: function(data) {
             displayStocks(data);
@@ -88,7 +88,7 @@ function addStock(company, ticker, priceBuy, sharesBuy, costBasis, dateAdded, pr
 
 
     $.ajax({
-        url: urlEndpointStock,
+        url: urlEndpointStocks,
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(newStock),
@@ -144,7 +144,7 @@ $('#update').click(function (event) {
     };
 
     $.ajax({
-        url: `${urlEndpointStock}/${id}`,
+        url: `${urlEndpointStocks}/${id}`,
         method: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(updatedStock),
@@ -176,7 +176,7 @@ $('#update').click(function (event) {
 function deleteStock(id) {
     if (confirm("Are you sure you want to delete this stock?")) {
         $.ajax({
-            url: `${urlEndpointStock}/${id}`,
+            url: `${urlEndpointStocks}/${id}`,
             method: 'DELETE',
             success: function(data) {
                 fetchStocks(); // Refresh table after successful deletion.
